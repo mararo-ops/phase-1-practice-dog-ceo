@@ -14,3 +14,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
       });
 });
+const breedUrl = 'https://dog.ceo/api/breeds/list/all';
+
+fetch(breedUrl)
+  .then(response => response.json()) 
+  .then(data => {
+    let breeds = Object.keys(data.message); // Get the breeds from the API response
+    breeds.forEach(breed => {
+      let listItem = document.createElement('li'); // Create a <li> element
+      listItem.innerText = breed; // Set the inner text to the breed name
+      document.getElementById('dog-breeds').appendChild(listItem); // Append the breed to the <ul>
+    });
+  });
