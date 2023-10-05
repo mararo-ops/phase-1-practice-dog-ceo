@@ -31,4 +31,24 @@ fetch(breedUrl)
       event.target.style.color = 'red'; // Change color of clicked list item
     }
   });
+  document.getElementById('breed-dropdown').addEventListener('change', function(event) {
+    let selectedLetter = event.target.value;
+    let breedList = document.getElementById('dog-breeds');
+    
+    // Clear the current list
+    breedList.innerHTML = '';
+  
+    fetch(breedUrl)
+      .then(response => response.json())
+      .then(data => {
+        let breeds = Object.keys(data.message); 
+        let filteredBreeds = breeds.filter(breed => breed.startsWith(selectedLetter)); // Filter breeds by selected letter
+        
+        filteredBreeds.forEach(breed => {
+          let listItem = document.createElement('li'); 
+          listItem.innerText = breed; 
+          breedList.appendChild(listItem);
+        });
+      });
+  });
   
