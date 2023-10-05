@@ -26,3 +26,9 @@ fetch(breedUrl)
       document.getElementById('dog-breeds').appendChild(listItem); // Append the breed to the <ul>
     });
   });
+  document.getElementById('dog-breeds').addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {
+      event.target.style.color = 'red'; // Change color of clicked list item
+    }
+  });
+  
